@@ -89,7 +89,7 @@ EOD;
   ],
   "public_jwk_url": "{$url}jwks.php",
   "custom_fields": {
-    "canvas_course_id": "$Canvas.course.id"
+    "canvas_course_id": "\$Canvas.course.id"
   }
 }
 EOD;
