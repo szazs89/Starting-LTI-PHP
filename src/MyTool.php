@@ -14,7 +14,7 @@ use ceLTIc\LTI\Enum\LtiVersion;
  */
 require_once('lib.php');
 
-class RatingTool extends LTI\Tool
+class MyTool extends LTI\Tool
 {
 
     function __construct($dataConnector)
@@ -331,7 +331,7 @@ EOD;
 <link href="css/rateit.css" media="screen" rel="stylesheet" type="text/css" />
 <script src="js/jquery.min.js" type="text/javascript"></script>
 <script src="js/jquery.rateit.min.js" type="text/javascript"></script>
-<link href="css/rating.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="css/mytool.css" media="screen" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <h1>Error</h1>
