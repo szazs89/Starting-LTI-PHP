@@ -13,12 +13,7 @@ use ceLTIc\LTI\Enum\ServiceAction;
  * @license  http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3
  */
 require_once('db.php');
-require_once('rating_tp.php');
-
-###  Application settings
-define('APP_NAME', 'Rating');
-define('APP_VERSION', '5.0.0');
-define('SESSION_NAME', 'php-rating');
+require_once('MyTool.php');
 
 LTI\ResourceLink::registerApiHook(LTI\ResourceLink::$MEMBERSHIPS_SERVICE_HOOK, 'moodle',
     'ceLTIc\LTI\ApiHook\moodle\MoodleApiResourceLink');
@@ -58,7 +53,7 @@ function init(&$db, $checkSession = null, $currentLevel = 0)
     session_start();
 
 // Set the default tool
-    LTI\Tool::$defaultTool = new RatingTool(null);
+    LTI\Tool::$defaultTool = new MyTool(null);
 
     if (!is_null($checkSession) && $checkSession) {
         $ok = isset($_SESSION['consumer_pk']) && (isset($_SESSION['resource_pk']) || is_null($_SESSION['resource_pk'])) &&
@@ -742,7 +737,7 @@ function pageFooter()
 EOD;
 }
 
-function ratingHtmlEntities($string, $flags = ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML401, $encoding = null, $double_encode = true)
+function ltiHtmlEntities($string, $flags = ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML401, $encoding = null, $double_encode = true)
 {
     if (is_int($string) || is_float($string)) {
         return strval($string);

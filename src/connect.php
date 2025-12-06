@@ -9,7 +9,7 @@ use ceLTIc\LTI\DataConnector;
  * @copyright  SPV Software Products
  * @license  http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3
  */
-require_once('rating_tp.php');
+require_once('MyTool.php');
 
 // Cancel any existing session
 session_name(SESSION_NAME);
@@ -21,12 +21,12 @@ session_destroy();
 $db = null;
 if (init($db)) {
     $dataConnector = DataConnector\DataConnector::getDataConnector($db, DB_TABLENAME_PREFIX);
-    $tool = new RatingTool($dataConnector);
+    $tool = new MyTool($dataConnector);
     $tool->setParameterConstraint('resource_link_id', true, 50, array('basic-lti-launch-request'));
     $tool->setParameterConstraint('user_id', true, 50, array('basic-lti-launch-request'));
     $tool->setParameterConstraint('roles', true, null, array('basic-lti-launch-request'));
 } else {
-    $tool = new RatingTool(null);
+    $tool = new MyTool(null);
     $tool->reason = $_SESSION['error_message'];
 }
 $tool->handleRequest();

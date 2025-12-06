@@ -215,7 +215,7 @@ $page = <<< EOD
 <meta http-equiv="content-language" content="EN" />
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>{$here(APP_NAME)}: Manage platforms</title>
-<link href="../css/rating.css?v={$here(APP_VERSION)}" media="screen" rel="stylesheet" type="text/css" />
+<link href="../css/mytool.css?v={$here(APP_VERSION)}" media="screen" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 //<![CDATA[
 var numSelected = 0;
@@ -394,17 +394,17 @@ EOD;
             $lti2 = ' disabled="disabled"';
         }
     }
-    $name = ratingHtmlEntities($updatePlatform->name);
-    $key = ratingHtmlEntities($updatePlatform->getKey());
-    $platformId = ratingHtmlEntities($updatePlatform->platformId);
-    $clientId = ratingHtmlEntities($updatePlatform->clientId);
-    $deploymentId = ratingHtmlEntities($updatePlatform->deploymentId);
-    $authorizationServerId = ratingHtmlEntities($updatePlatform->authorizationServerId);
-    $authenticationUrl = ratingHtmlEntities($updatePlatform->authenticationUrl);
-    $accessTokenUrl = ratingHtmlEntities($updatePlatform->accessTokenUrl);
-    $publicKey = ratingHtmlEntities($updatePlatform->rsaKey);
-    $jku = ratingHtmlEntities($updatePlatform->jku);
-    $secret = ratingHtmlEntities($updatePlatform->secret);
+    $name = ltiHtmlEntities($updatePlatform->name);
+    $key = ltiHtmlEntities($updatePlatform->getKey());
+    $platformId = ltiHtmlEntities($updatePlatform->platformId);
+    $clientId = ltiHtmlEntities($updatePlatform->clientId);
+    $deploymentId = ltiHtmlEntities($updatePlatform->deploymentId);
+    $authorizationServerId = ltiHtmlEntities($updatePlatform->authorizationServerId);
+    $authenticationUrl = ltiHtmlEntities($updatePlatform->authenticationUrl);
+    $accessTokenUrl = ltiHtmlEntities($updatePlatform->accessTokenUrl);
+    $publicKey = ltiHtmlEntities($updatePlatform->rsaKey);
+    $jku = ltiHtmlEntities($updatePlatform->jku);
+    $secret = ltiHtmlEntities($updatePlatform->secret);
     if ($updatePlatform->enabled) {
         $enabled = ' checked="checked"';
     } else {

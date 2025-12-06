@@ -200,7 +200,7 @@ $page = <<< EOD
   <script src="js/jquery-3.7.0.min.js" type="text/javascript"></script>
   <script src="js/jquery.rateit.min.js" type="text/javascript"></script>
   <script src="js/rating.js?v={$here(APP_VERSION)}" type="text/javascript"></script>
-  <link href="css/rating.css?v={$here(APP_VERSION)}" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/mytool.css?v={$here(APP_VERSION)}" media="screen" rel="stylesheet" type="text/css" />
   <script type="text/javascript">
 //<![CDATA[
 function doContentItem(todo) {
@@ -371,9 +371,9 @@ if ($ok && !$_SESSION['isStudent'] && ($_SESSION['isContentItem'] || ($_SESSION[
     } else {
         $mode = 'Add new';
     }
-    $title = ratingHtmlEntities($updateItem->item_title);
-    $url = ratingHtmlEntities($updateItem->item_url);
-    $text = ratingHtmlEntities($updateItem->item_text);
+    $title = ltiHtmlEntities($updateItem->item_title);
+    $url = ltiHtmlEntities($updateItem->item_url);
+    $text = ltiHtmlEntities($updateItem->item_text);
     if ($updateItem->visible) {
         $checked = ' checked="checked"';
     } else {

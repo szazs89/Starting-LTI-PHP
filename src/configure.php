@@ -35,18 +35,18 @@ if (!isset($_GET['json'])) {
   <blti:icon>{$url}images/icon16.png</blti:icon>
   <blti:launch_url>{$url}connect.php</blti:launch_url>
   <blti:extensions platform="canvas.instructure.com">
-    <lticm:property name="tool_id">rating</lticm:property>
+    <lticm:property name="tool_id">{$here(TOOL_ID)}</lticm:property>
     <lticm:property name="privacy_level">public</lticm:property>
     <lticm:property name="domain">{$domain}</lticm:property>
     <lticm:property name="oauth_compliant">true</lticm:property>
   </blti:extensions>
   <blti:vendor>
-    <lticp:code>spvsp</lticp:code>
-    <lticp:name>SPV Software Products</lticp:name>
-    <lticp:description>Provider of open source educational tools.</lticp:description>
-    <lticp:url>http://www.spvsoftwareproducts.com/</lticp:url>
+    <lticp:code>{$here(VENDOR_CODE)}</lticp:code>
+    <lticp:name>{$here(VENDOR_NAME)}</lticp:name>
+    <lticp:description>{$here(VENDOR_DESCRIPTION)}</lticp:description>
+    <lticp:url>{$here(VENDOR_URL)}</lticp:url>
     <lticp:contact>
-      <lticp:email>stephen@spvsoftwareproducts.com</lticp:email>
+      <lticp:email>{$here(VENDOR_EMAIL)}</lticp:email>
     </lticp:contact>
   </blti:vendor>
 </cartridge_basiclti_link>
@@ -72,7 +72,7 @@ EOD;
   "extensions": [
     {
       "domain": "{$domain}",
-      "tool_id": "rating",
+      "tool_id": "{$here(TOOL_ID)}",
       "platform": "canvas.instructure.com",
       "privacy_level": "public",
       "settings": {
@@ -89,6 +89,7 @@ EOD;
   ],
   "public_jwk_url": "{$url}jwks.php",
   "custom_fields": {
+    "user_username": "\$User.username",
     "canvas_course_id": "\$Canvas.course.id"
   }
 }

@@ -10,7 +10,7 @@ use ceLTIc\LTI\DataConnector;
  * @copyright  SPV Software Products
  * @license  http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3
  */
-require_once('rating_tp.php');
+require_once('MyTool.php');
 
 // Initialise session and database
 $page = '';
@@ -28,7 +28,7 @@ if (init($db)) {
             $sep = '&';
         }
         $dataConnector = DataConnector\DataConnector::getDataConnector($db, DB_TABLENAME_PREFIX);
-        $tool = new RatingTool($dataConnector);
+        $tool = new MyTool($dataConnector);
         $tool->platform = LTI\Platform::fromRecordId($_SESSION['consumer_pk'], $dataConnector);
         $do = $_POST['do'];
         if ($do == 'Register') {
@@ -81,11 +81,11 @@ $page = <<< EOD
 <meta http-equiv="content-language" content="EN" />
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>{$title}</title>
-<link href="css/rating.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="css/mytool.css" media="screen" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-<h1>Rating Application Registration</h1>
+<h1>{$title} Application Registration</h1>
 {$page}
 </body>
 </html>

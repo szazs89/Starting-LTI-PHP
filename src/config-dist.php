@@ -22,12 +22,42 @@ Util::$logLevel = LogLevel::Error;
 define('REQUEST_URI_PREFIX', '');
 
 ###
+###  App specific settings
+###
+define('TOOL_ID', 'rating');
+define('SESSION_NAME', 'php-rating');
+define('APP_NAME', 'Rating');
+define('APP_VERSION', '5.0.0');
+define('VENDOR_CODE', 'spvsp');
+define('VENDOR_NAME', 'SPV Software Products');
+define('VENDOR_DESCRIPTION', 'Provider of open source educational tools.');
+define('VENDOR_URL', 'http://www.spvsoftwareproducts.com/');
+define('VENDOR_EMAIL', 'stephen@spvsoftwareproducts.com');
+
+###
 ###  Database connection settings
 ###
 define('DB_NAME', '');  // e.g. 'mysql:dbname=MyDb;host=localhost' or 'sqlite:php-rating.sqlitedb'
 define('DB_USERNAME', '');
 define('DB_PASSWORD', '');
 define('DB_TABLENAME_PREFIX', '');
+define('DB_TABLE_PAR', 'item' );	// table of items / tasks
+define('DB_TABLE_ANS', 'rating');	// table of answers, e.g. ratings
+define('CUSTOM_PAR_FIELDS', <<< EOD
+item_title varchar(200) NOT NULL,
+item_text text,
+item_url varchar(200) DEFAULT NULL,
+max_rating int(2) NOT NULL DEFAULT '5',
+step int(1) NOT NULL DEFAULT '1',
+visible tinyint(1) NOT NULL DEFAULT '0',
+sequence int(3) NOT NULL DEFAULT '0'
+EOD
+);
+define('CUSTOM_ANS_FIELDS', <<< EOD
+rating decimal(10,2) NOT NULL
+EOD
+);
+
 
 ###
 ###  LTI 1.3 Security settings
