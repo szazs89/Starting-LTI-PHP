@@ -66,7 +66,6 @@ function init_db($db)
 
     $ok = true;
     $prefix = DB_TABLENAME_PREFIX;
-    $pref_item = $prefix . DB_TABLE_PAR;
     $pref_rating = $prefix . DB_TABLE_ANS;
 
     if (!tableExists($db, $prefix . DataConnector\DataConnector::PLATFORM_TABLE_NAME)) {
@@ -272,27 +271,6 @@ function init_db($db)
             $sql = "ALTER TABLE {$prefix}" . DataConnector\DataConnector::RESOURCE_LINK_SHARE_KEY_TABLE_NAME . ' ' .
                 "ADD INDEX {$prefix}" . DataConnector\DataConnector::RESOURCE_LINK_SHARE_KEY_TABLE_NAME . '_' .
                 'resource_link_pk_IDX (resource_link_pk ASC)';
-            $ok = $db->exec($sql) !== false;
-        }
-    }
-    if ($ok && !tableExists($db, "{$pref_item}")) {
-// Adjust for different syntax of autoincrement columns
-        $sql = "CREATE TABLE {$pref_item} (" .
-            "item_pk int(11) NOT NULL AUTO_INCREMENT," .
-            'resource_link_pk int(11) NOT NULL, ' .
-            CUSTOM_PAR_FIELDS . ', ' .
-            'created datetime NOT NULL, ' .
-            'updated datetime NOT NULL, ' .
-            'PRIMARY KEY (item_pk)' .
-            ') ENGINE=InnoDB DEFAULT CHARSET=utf8';
-        $ok = $db->exec($sql) !== false;
-        if ($ok) {
-            $sql = "ALTER TABLE {$pref_item} " .
-                "ADD CONSTRAINT {$prefix}item_" .
-                DataConnector\DataConnector::RESOURCE_LINK_TABLE_NAME . '_FK1 FOREIGN KEY (resource_link_pk) ' .
-                "REFERENCES {$prefix}" . DataConnector\DataConnector::RESOURCE_LINK_TABLE_NAME . ' (resource_link_pk) ' .
-                'ON UPDATE CASCADE ' .
-                'ON DELETE CASCADE';
             $ok = $db->exec($sql) !== false;
         }
     }
