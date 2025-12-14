@@ -7,10 +7,11 @@ use ceLTIc\LTI\ResourceLink;
 use ceLTIc\LTI\UserResult;
 
 /**
- * This page displays information passed to the LTI tool from the platform.
+ * This page displays a simple task for Statics class
+ * (the information passed to the LTI tool from the platform is hidden)
  *
- * @author  Kyle Tuck <kylejtuck@gmail.com>
- * @copyright  Kyle Tuck
+ * @author  Kyle Tuck <kylejtuck@gmail.com>, Zsolt Szabo <szazs89@gmail.com>
+ * @copyright  Kyle Tuck, Zsolt Szabo
  * @license  http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3
  */
 require_once('lib.php');
@@ -48,21 +49,25 @@ EOD;
 
 
 if ($ok) {
+	$page .= "<!--\n";
 	$membership = "<h2>Memberships Details for " . $resourceLink->title . "</h2>\n";
 	if ($resourceLink->hasMembershipsService()) {
  		$membership .= "<p>Resource Link has <strong>memberships</strong> service.</p>\n";
 		$members = $resourceLink->getMemberships(true);
 		$membership .= "<h3>Members</h3>\n";
 		$membership .= "<pre>";
+		if (!empty($members)) {
 		foreach ($members as $member) {
 			if ($member->ltiUserId == $_SESSION['ltiUserId']) $userResult = $member;
 			$membership .= $member->lastname . ", " . $member->firstname . ": ";
 			$membership .= $member->isLearner()?"Student\n":"Instructor\n";
 		}
+		}
 		$membership .= "</pre>\n";
 	}
 	$page .= "<h2>User Details</h2>\n";
  	$page .= "<pre>\n" . json_encode($userResult, JSON_PRETTY_PRINT) . "</pre>\n";
+// 	$page .= "<pre>\n" . json_encode($tool, JSON_PRETTY_PRINT) . "</pre>\n";
 	$otherDetails = "<h2>Custom Settings</h2>\n<h3>Resource Link Settings</h3>\n";
 	$rlSettings = $resourceLink->getSettings();
 	foreach ($rlSettings as $setting => $val) {
@@ -74,6 +79,7 @@ if ($ok) {
 	}
 	$page .= $otherDetails;
 	$page .= $membership;
+	$page .= "-->\n";
 } else {
 	$page .= <<< EOD
 	<p style="font-weight: bold; color: #f00;">There was an error initializing the LTI application.</p>
@@ -93,7 +99,31 @@ EOD;
 		unset($_SESSION['message']);
 	}
 }
+
+if( isset($_SESSION['mypars']) ){	// hopefully it is a POST
+    $p = $_SESSION['mypars'];
+}else{
+    $p = new MyPars;
+    $_SESSION['mypars'] = $p;
+}
+$p->check();
 $page .= <<< EOD
+A beam of length L={$p->L} m is supported at its both ends (A, B).<br>
+A force F={$p->F} kN acts on the beam at the distance a={$p->a} m from its
+left end.<br>
+Determine the reaction forces A and B.
+<form method='POST' action=''>
+Reaction force A: <input size=6 name='{$p->pA}' value='{$p->vA}' > kN {$p->okA}<br>
+Reaction force B: <input size=6 name='{$p->pB}' value='{$p->vB}' > kN {$p->okB}<br>
+<input type='submit' name='chk' value='Check'>
+EOD;
+if( is_numeric($p->grade()) ){
+    $page .= <<< EOD
+Points: {$p->grade()}
+EOD;
+}
+$page .= <<< EOD
+</form>
 </body>
 </html>
 EOD;

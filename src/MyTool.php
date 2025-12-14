@@ -67,6 +67,7 @@ class MyTool extends LTI\Tool
             $_SESSION['user_pk'] = $this->userResult->getRecordId();
             $_SESSION['isStudent'] = $this->userResult->isLearner();
             $_SESSION['ltiUserId'] = $this->userResult->getId();
+            $_SESSION['ltiUsername'] = $this->userResult->username;
             $_SESSION['isContentItem'] = false;
             $_SESSION['lti_version'] = $this->platform->ltiVersion;
 

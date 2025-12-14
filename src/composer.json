@@ -1,16 +1,16 @@
 {
-  "name": "kylejtuck/Basic-LTI-PHP",
-  "version": "1.0.1",
+  "name": "szazs89/Starting-LTI-PHP",
+  "version": "0.1.0",
   "type": "project",
   "license": "GPL-3.0-or-later",
   "authors": [
     {
-      "name": "Kyle Tuck",
-      "email": "kylejtuck@gmail.com"
+      "name": "Zsolt Szabo",
+      "email": "szazs89@gmail.com"
     }
   ],
   "support": {
-    "docs": "https://github.com/kylejtuck/Basic-LTI-PHP/wiki"
+    "docs": "https://github.com/szazs89/Starting-LTI-PHP/wiki"
   },
   "require": {
     "php": ">=8.1",

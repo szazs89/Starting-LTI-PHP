@@ -24,19 +24,19 @@ define('REQUEST_URI_PREFIX', '');
 ###
 ###  App specific settings
 ###
-define('TOOL_ID', 'lti13');
-define('SESSION_NAME', 'lti13');
+define('TOOL_ID', 'starting_lti13');
+define('SESSION_NAME', 'php-starting');
 define('TOOL_BASE_URL', '');
-define('TOOL_UUID', '6a629dc8-7f50-438c-a106-8d9560acdfda'); // Linux command: uuidgen
-define('APP_NAME', 'Basic LTI 1.3');
-define('APP_DESCRIPTION', 'An LTI 1.3 test app.');
+define('TOOL_UUID', '896e90f4-a44f-4b8d-990d-265c063b68c9');  // Linux command: uuidgen
+define('APP_NAME', 'Starting LTI 1.3');
+define('APP_DESCRIPTION', 'Simple LTI app.');
 define('APP_VERSION', '0.1.0');
-define('APP_URL', 'https://github.com/kylejtuck/Basic-LTI-PHP/');
-define('VENDOR_CODE', 'kjt');
-define('VENDOR_NAME', 'Kyle J Tuck');
+define('APP_URL', 'https://github.com/szazs89/Starting-LTI-PHP/');
+define('VENDOR_CODE', 'szazs');
+define('VENDOR_NAME', 'Zsolt Szabo');
 define('VENDOR_DESCRIPTION', 'Independent developer');
-define('VENDOR_URL', 'https://github.com/kylejtuck');
-define('VENDOR_EMAIL', 'kylejtuck@gmail.com');
+define('VENDOR_URL', 'https://github.com/szazs89');
+define('VENDOR_EMAIL', 'szazs89@gmail.com');
 define('INSTRUCTOR_ONLY', true);
 define('DEFAULT_DISABLED', true);
 
@@ -49,7 +49,17 @@ define('DB_PASSWORD', '');
 define('DB_TABLENAME_PREFIX', '');
 define('DB_TABLE_ANS', 'mytool');	// table of answers, e.g. ratings
 define('CUSTOM_ANS_FIELDS', <<< EOD
-rating decimal(10,2) NOT NULL
+username varchar(6) NOT NULL,
+grade int(2),
+ansA float,
+ansB float,
+valA float NOT NULL,
+valB float NOT NULL,
+parF int(2) NOT NULL,
+parL int(2) NOT NULL,
+para float NOT NULL,
+eta   int(4),
+start datetime NOT NULL
 EOD
 );
 
