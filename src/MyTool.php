@@ -35,7 +35,7 @@ class MyTool extends LTI\Tool
         );
 
         $this->resourceHandlers[] = new Profile\ResourceHandler(
-            new Profile\Item(TOOL_ID, APP_NAME, APP_DESCRIPTION)),
+            new Profile\Item(TOOL_ID, APP_NAME, APP_DESCRIPTION),
             'images/icon50.png', $requiredMessages, $optionalMessages);
 
         $this->requiredServices[] = new Profile\ServiceDefinition(array('application/vnd.ims.lti.v2.toolproxy+json'), array('POST'));
@@ -66,7 +66,7 @@ class MyTool extends LTI\Tool
             $_SESSION['user_resource_pk'] = $this->userResult->getResourceLink()->getRecordId();
             $_SESSION['user_pk'] = $this->userResult->getRecordId();
             $_SESSION['isStudent'] = $this->userResult->isLearner();
-            $_SESSION['ltiUserId'] = $this->userResult->ltiUserId();
+            $_SESSION['ltiUserId'] = $this->userResult->getId();
             $_SESSION['isContentItem'] = false;
             $_SESSION['lti_version'] = $this->platform->ltiVersion;
 
