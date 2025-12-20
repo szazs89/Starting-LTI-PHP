@@ -46,9 +46,9 @@ define('DEFAULT_DISABLED', true);
 define('DB_NAME', '');  // e.g. 'mysql:dbname=MyDb;host=localhost' or 'sqlite:php-rating.sqlitedb'
 define('DB_USERNAME', '');
 define('DB_PASSWORD', '');
-define('DB_TABLENAME_PREFIX', '');
-define('DB_TABLE_ANS', 'mytool');	// table of answers, e.g. ratings
-define('CUSTOM_ANS_FIELDS', <<< EOD
+define('DB_TABLENAME_PREFIX', 'my_');	// optional - note the underscore!
+define('DB_TABLE_CUSTOM', 'tool');	// custom table of mytool, e.g. ratings, answers, etc.
+define('CUSTOM_FIELDS', <<< EOD
 username varchar(6) NOT NULL,
 grade int(2),
 ansA float,

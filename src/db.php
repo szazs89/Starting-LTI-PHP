@@ -66,7 +66,7 @@ function init_db($db)
 
     $ok = true;
     $prefix = DB_TABLENAME_PREFIX;
-    $pref_rating = $prefix . DB_TABLE_ANS;
+    $pref_cust = $prefix . DB_TABLE_CUSTOM;
 
     if (!tableExists($db, $prefix . DataConnector\DataConnector::PLATFORM_TABLE_NAME)) {
         $sql = "CREATE TABLE {$prefix}" . DataConnector\DataConnector::PLATFORM_TABLE_NAME . ' (' .
@@ -275,23 +275,23 @@ function init_db($db)
         }
     }
 
-    if ($ok && !tableExists($db, "{$pref_rating}")) {
-        $sql = "CREATE TABLE {$pref_rating} (" .
+    if ($ok && !tableExists($db, "{$pref_cust}")) {
+        $sql = "CREATE TABLE {$pref_cust} (" .
             'item_pk int(11) NOT NULL, ' .
             'user_pk int(11) NOT NULL, ' .
-            CUSTOM_ANS_FIELDS . ', ' .
+            CUSTOM_FIELDS . ', ' .
             'PRIMARY KEY (item_pk, user_pk)' .
             ') ENGINE=InnoDB DEFAULT CHARSET=utf8';
         $ok = $db->exec($sql) !== false;
-        if ($ok) {
-            $sql = "ALTER TABLE {$pref_rating} " .
+/*        if ($ok) {
+            $sql = "ALTER TABLE {$pref_cust} " .
                 "ADD CONSTRAINT {$prefix}rating_item_FK1 FOREIGN KEY (item_pk) " .
                 "REFERENCES {$pref_item} (item_pk) " .
                 'ON UPDATE CASCADE ' .
                 'ON DELETE CASCADE';
             $ok = $db->exec($sql) !== false;
         }
-    }
+*/    }
 
     return $ok;
 }
